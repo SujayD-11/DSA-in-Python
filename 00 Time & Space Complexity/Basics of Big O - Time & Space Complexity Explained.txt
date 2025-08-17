@@ -1,0 +1,171 @@
+- Say if you have 2 codes, which achieve the same thing. How do you compare it, so as to use finally?
+- Code 1 might be more readable, but Code 2 on the other hand might be more concise. Etc. So there is a lot of ambiguity so as to use which one?
+- Big O is a method, that allows you to compare codes, and effectively tell which one is better, mathematically.
+
+What Big O is?
+---------------
+- Lets say you have a stop watch. You run the stop watch when code 1 is running and note down the time - 1 min; while code 2 takes almost 10 min to run.
+- So with this you can say Code 1 is better at executing. But this is only when you have same laptop with same specs, and exactly same conditions.
+- Comparing code with its execution factor as time is called Time Complexity. 
+- But the irony is you don’t measure Time complexity in Time notations, as if you have a faster executing code, it can mean your computer is better, and it may/may not be the code.
+- So an effective measurement would be: Number of operations required to complete the task with the code.
+
+- Like Time Complexity being one metric, Space Complexity is another. 
+- Continuing on the same example as Code 1 and Code 2 comparison, say using the notion of Time Complexity you find out that Code 1 is less complex and more effective, but it takes more memory to run, while Code 2 runs with less memory but is slower in execution, then what?
+- Here we need to understand that these are 2 different metrics and different parameters, so it completely depends on the usecase you have. If Space is your priority then space complexity should be the metric for comparison, else Time should just do the trick.
+
+Dealing with Time Complexity
+----------------------------
+- Dealing with Time complexity, you come across 3 main terms denoted with 3 Greek Letters:
+  Ω - Omega, Θ - Theta, Ο - Omicron or Oh (as in Big Oh or O).
+- Ω (Omega) talks about the **best case** scenario.
+- Θ (Theta) talks about the **average case** scenario.
+- O (Big Oh) talks about the **worst case** scenario.
+
+Examples
+--------
+Example 1:
+def print_ele(n):
+    for i in range(n):
+        print(i)
+
+- This is a function that takes in n elements and prints out n elements on a new line.
+- If n = 0, then 0 operations are performed.
+- If n = 1, then 1 operation is performed.
+- So on and so forth.
+
+Example 2:
+def print_items(n):
+    for i in range(n):
+        for j in range(n):
+            print(i,j)
+
+- Number of operations would be n*n => n^2.
+
+Rules while handling Time Complexity (for simplification)
+---------------------------------------------------------
+1. Drop Constants
+   Example:
+   def print_ele(n):
+       for i in range(n):
+           print(i)
+       for j in range(n):
+           print(j)
+
+   print_ele(10)
+
+   - Now over here there are 2 for loops.
+   - Number of operations = n + n = 2n.
+   - Time complexity technically = O(2n).
+   - But we drop the constant, so => O(n).
+
+2. Drop Non-Dominants
+   Example:
+   def print_items(n):
+       for i in range(n):
+           for j in range(n):
+               print(i,j)
+       for k in range(n):
+           print(k)
+
+   - Number of operations = n^2 + n.
+   - As n → infinity, n^2 dominates over n.
+   - So we write => O(n^2).
+
+3. Constants are treated as O(1)
+   Example:
+   def add_item(n):
+       return n+n
+
+   - Here number of operations = 1.
+   - Even if it was n+n+n, it will still be treated as one operation.
+   - So complexity => O(1).
+
+Seven most common functions used (order of increasing complexity)
+-----------------------------------------------------------------
+1. Constant function O(1)
+2. Linear function O(n)
+3. Logarithmic function O(log(n))
+4. Linearithmic function O(n*log(n))
+5. Quadratic function O(n^2)
+6. Polynomial functions O(n^3) etc.
+7. Exponential functions O(2^n)
+
+Doing some basic analysis with Python Data Structure - List
+------------------------------------------------------------
+my_list = [11,3,23,7]
+           0  1  2  3   --> Indices
+
+1. my_list.append(<ele>) => Adds element at the end. Constant time. O(1).
+2. my_list.pop() => Removes last element. Constant time. O(1).
+   NOTE -> pop() by default removes from the last index.
+3. my_list.pop(0) => Removes element from 0th index. 
+   Needs reordering of the list (as many items as the list contains).
+   So => O(n).
+4. my_list.insert(0,11) => Insert at 0th index. Same reordering issue. So O(n).
+5. Looking for an item => Have to search all items in list. O(n).
+6. Accessing 1 item by index => Direct. O(1).
+
+For more information you can look at:
+https://www.bigocheatsheet.com/
+(Ikr it is literally called big-oh cheatsheet.com !! Like how complex can a topic be that you have a website of the same domain to explain it to you like you are 5!!)
+
+Big O Complexity Cheatsheet
+----------------------------
+Data Structure        | Time Complexity                                                                                  | Space Complexity 
+                      |  Average                                      | Worst                                            | Worst
+                      | Access    | Search    | Insert    | Delete    | Access    | Search    | Insert       | Delete    |
+-------------------------------------------------------------------------------------------------
+Array                 |   O(1)    | O(n)      | O(n)      | O(n)      |   O(1)    |   O(n)    |   O(n)       |   O(n)    |   O(n)
+Stack                 |   O(n)    | O(n)      | O(1)      | O(1)      |   O(n)    |   O(n)    |   O(1)       |   O(1)    |   O(n)
+Queue                 |   O(n)    | O(n)      | O(1)      | O(1)      |   O(n)    |   O(n)    |   O(1)       |   O(1)    |   O(n)
+Singly-Linked List    |   O(n)    | O(n)      | O(1)      | O(1)      |   O(n)    |   O(n)    |   O(1)       |   O(1)    |   O(n)
+Doubly-Linked List    |   O(n)    | O(n)      | O(1)      | O(1)      |   O(n)    |   O(n)    |   O(1)       |   O(1)    |   O(n)
+Skip List             | O(log(n)) | O(log(n)) | O(log(n)) | O(log(n)) |   O(n)    |   O(n)    |   O(n)       |   O(n)    | O(n log(n))
+Hash Table            |   N/A     | O(1)      | O(1)      | O(1)      |   N/A     |   O(n)    |   O(n)       |   O(n)    |   O(n)
+Binary Search Tree    | O(log(n)) | O(log(n)) | O(log(n)) | O(log(n)) |   O(n)    |   O(n)    |   O(n)       |   O(n)    |   O(n)
+Cartesian Tree        |   N/A     | O(log(n)) | O(log(n)) | O(log(n)) |   N/A     |   O(n)    |   O(n)       |   O(n)    |   O(n)
+B-Tree                | O(log(n)) | O(log(n)) | O(log(n)) | O(log(n)) | O(log(n)) | O(log(n)) | O(log(n))    | O(log(n)) |   O(n)
+Red-Black Tree        | O(log(n)) | O(log(n)) | O(log(n)) | O(log(n)) | O(log(n)) | O(log(n)) | O(log(n))    | O(log(n)) |   O(n)
+Splay Tree            |   N/A     | O(log(n)) | O(log(n)) | O(log(n)) |   N/A     | O(log(n)) | O(log(n))    | O(log(n)) |   O(n)
+AVL Tree              | O(log(n)) | O(log(n)) | O(log(n)) | O(log(n)) | O(log(n)) | O(log(n)) | O(log(n))    | O(log(n)) |   O(n)
+KD Tree               | O(log(n)) | O(log(n)) | O(log(n)) | O(log(n)) |   O(n)    |   O(n)    |   O(n)       |   O(n)    |   O(n)
+
+Extra Notes I should remember
+-----------------------------
+- Big O gives an **upper bound** (worst case). That’s why it’s the most widely used.
+- Big Ω gives a **lower bound** (best case). But best cases don’t happen often, so not always useful.
+- Big O means “tight bound” i.e. both upper and lower bound are the same. That’s the actual growth rate.
+- Sometimes people also talk about **little o** and **little ω** notations. 
+  - Little o: “strictly less than” (algorithm grows slower than another).
+  - Little ω: “strictly greater than” (algorithm grows faster than another).
+  - These are advanced but good to know.
+
+- Time complexity analysis usually considers the input size `n` as the variable.
+- If code has multiple inputs (like n and m), then complexity should be expressed in terms of both: O(n*m).
+- Always think of **scalability**: how does this code behave as n grows to infinity?
+- Some algorithms have **amortized analysis** (like Array resizing, Hash tables).
+  - Example: In Python lists, append() looks like O(1), but occasionally resizing happens internally (copying into bigger array).
+  - On average, it’s still considered O(1) => called Amortized O(1).
+- Recursive functions: use **recurrence relations** to calculate complexity.
+  - Example: Binary search -> T(n) = T(n/2) + O(1) => O(log n).
+  - Example: Merge Sort -> T(n) = 2T(n/2) + O(n) => O(n log n).
+- There’s also **best, average, and worst case time complexities** (important when analyzing searching/sorting).
+- Different complexities matter depending on the problem:
+  - For small inputs, O(n^2) might be acceptable.
+  - For large inputs, O(n log n) or better is often necessary.
+- Memory/Space trade-offs are real: Faster code might use more memory, while slower code might save memory. Choice depends on context.
+
+Amortized Analysis and Recurrence Relations
+--------------------------------------------
+- Amortized Analysis explains how some operations may be costly occasionally but average out to efficient overall across many operations.  
+- Example: Python list append() is usually O(1), but occasionally resizing the array costs O(n). The average (amortized) cost is still O(1).  
+- Recurrence Relations help analyze recursive algorithms by expressing their runtime as equations.  
+- Example: Binary search has T(n) = T(n/2) + O(1), which solves to O(log n).  
+- Example: Merge Sort’s recurrence T(n) = 2T(n/2) + O(n) solves to O(n log n).  
+
+- Average case complexity considers expected performance over all inputs, complementing best (Ω) and worst (O) cases.  
+- Space complexity also includes memory for recursion call stacks and dynamic allocations, not just variables.  
+- Practical factors like CPU cache, parallelism, and hardware can affect real-world performance beyond Big O.  
+- When algorithms have multiple inputs (like n and m), express complexity accordingly (e.g., O(n*m)).  
+- Advanced notations: little-o (strictly slower growth) and little-ω (strictly faster growth). Useful for deeper theoretical understanding.
