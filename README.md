@@ -4,7 +4,12 @@ This checklist to track my progress through important Data Structures and Algori
 Each header, is a data structure, or type of algorithm, or just a big problem type/domain. Each sub pointers under these headers, are important patterns that are useful to know under these broad categories.
 
 ---
-
+## 0. Time & Space Complexity
+- [ ] Why Time & Space Complexity?
+- [ ] Big O
+- [ ] Rules while handling Time Complexity (for simplification)
+- [ ] Amortized Analysis and Recurrence Relations 
+---
 ## 1. Arrays and Strings
 - [ ] Basic operations: indexing, slicing, iteration
 - [ ] Two pointer  
