@@ -5,10 +5,10 @@ Each header, is a data structure, or type of algorithm, or just a big problem ty
 
 ---
 ## 0. Time & Space Complexity
-- [ ] Why Time & Space Complexity?
-- [ ] Big O
-- [ ] Rules while handling Time Complexity (for simplification)
-- [ ] Amortized Analysis and Recurrence Relations 
+- [x] Why Time & Space Complexity?
+- [x] Big O
+- [x] Rules while handling Time Complexity (for simplification)
+- [x] Amortized Analysis and Recurrence Relations 
 ---
 ## 1. Arrays and Strings
 - [ ] Basic operations: indexing, slicing, iteration
